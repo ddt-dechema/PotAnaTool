@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <SCRIPt>
+        function updateTextInput(val) {
+          document.getElementById('textInput').value=val; 
+        }
+    </SCRIPt>
+    <title>PtX-Potential Analysis</title>
+  </head>
+
+  <body>    
+    <div class="container-fluid">
+        <h1 class="display-4">PtX-Potential Analysis (<a href="https://www.kopernikus-projekte.de/p2x" target="_blank">Kopernikus P2X</a> and <a href="http://namosyn.de/" target="_blank">NAMOSYN</a>)</h1>
+        <p class="lead">
+            Hier stehen einige allgemeine Informationen 
+          </p>
+        <div class="row">
+        <!--------------------------
+        Settings
+        
+        
+        -------------------------->
+            <div class="col-3 border bg-light">
+              <h3 class="display-7">General Settings</h3>
+              <form>
+                <div class="form-row">
+                    <div class="form-group col-md-3">
+                        <label for="inputCountry">Country</label>
+                        <select id="inputCountry" class="form-control">
+                        <option selected>Germany</option>
+                        <option>Spain</option>
+                        <option>Norway</option>
+                        <option>Argentina</option>
+                        <option>Chile</option>
+                        <option>China</option>
+                        <option>Kazakhstan</option>
+                        <option>Madagascar</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputPtXProduct">Product</label>
+                        <select id="inputPtXProduct" class="form-control">
+                        <option selected>Hydrogen</option>
+                        <option value="FT-Diesel">FT-Diesel/Gasoline</option>
+                        <option value="FT-Kerosin">FT-Kerosene</option>
+                        <option value="FT-Naphtha">FT-Naphtha</option>
+                        <option value="MeOH">Methanol</option>
+                        <option value="OME">OME<sub>3-5</sub></option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <label for="inputYear">Year</label>
+                        <select id="inputYear" class="form-control">
+                        <option selected>2020</option>
+                        <option>2030</option>
+                        <option>2040</option>
+                        <option>2050</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <br><!-- Platzhalter -->
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                            Supply
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Demand
+                            </label>
+                        </div>
+                    </div>
+                </div><!--  form-row -->
+                <hr>
+                <h3 class="display-9">(Renewable) Energies</h3>
+                <!-- <p class="lead">consider gross electricity consumption?     -->
+                    
+                <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-9 col-form-label">consider gross electricity consumption?</label>
+                <div class="col-sm-3">
+                    <input class="form-check-input" type="checkbox" name="exampleRadios" id="exampleRadios2" value="option2"> yes    
+                </div>
+              </div>
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <div class="form-group">
+                            <label for="formControlRange">Output for PtX-Product</label>
+                            <input type="range" class="form-control-range" id="formControlRange"  onchange="updateTextInput(this.value);">
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <br>
+                        <!-- <label class="sr-only" for="inlineFormInputGroup">Username</label> -->
+                        <div class="input-group"><!-- mb-12">-->
+                          <input type="text" class="form-control" id="textInput" placeholder="50">
+                          <div class="input-group-append">
+                            <div class="input-group-text">%</div>
+                          </div>
+                        </div>
+                      </div>
+                      
+                    <div class="form-group col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="WindOnCheck" value="option1" checked>
+                            <label class="form-check-label" for="WindOnCheck">Wind-Onshore</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="WindOffCheck" value="option2" checked>
+                            <label class="form-check-label" for="WindOffCheck">Wind-Offshore</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="PVCheck" value="option3" checked>
+                            <label class="form-check-label" for="PVCheck">Photovoltaik</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="HydroCheck" value="option3" checked>
+                            <label class="form-check-label" for="HydroCheck">Hydropower</label>
+                          </div>
+                    </div>
+                    <div class="form-group col-md-6">
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="BiomassCheck" value="option1" checked>
+                            <label class="form-check-label" for="BiomassCheck">Biomass</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="GeothermalCheck" value="option2" checked>
+                            <label class="form-check-label" for="GeothermalCheck">Geothermal energy</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="GasEnergyCheck" value="option2" checked>
+                            <label class="form-check-label" for="GasEnergyCheck">Landfill gas</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="nonEECheck" value="option3">
+                            <label class="form-check-label" for="nonEECheck">non-renewables</label>
+                          </div>
+                    </div>
+                </div><!--  form-row -->
+                <hr>
+                <!-- <h3 class="display-7">CO<sub>2</sub> sources</h3> -->
+                      <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-6 col-form-label"><h3 class="display-7">CO<sub>2</sub> sources</h3></label>
+                        <div class="col-sm-6">
+                            <select id="inputCountry" class="form-control">
+                                <option selected>point sources</option>
+                                <option >DAC</option>
+                                <option>biogenic sources</option>
+                            </select>                        
+                        </div>
+                      </div>
+                    <div class="form-row">
+
+                    <div class="form-group col-md-5 alert-secondary">
+                        <p class="lead">point sources</p>
+                        
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="ChemistrySectorCheck" value="option1" checked>
+                            <label class="form-check-label" for="ChemistrySectorCheck">Chemical industry</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="EnergySectorCheck" value="1" checked>
+                            <label class="form-check-label" for="EnergySectorCheck">Energy industry</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="MetalSectorCheck" value="option3" checked>
+                            <label class="form-check-label" for="MetalSectorCheck">Metal industry</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="PaperSectorCheck" value="option3" checked>
+                            <label class="form-check-label" for="PaperSectorCheck">Paper industry</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="WaterSectorCheck" value="option1" checked>
+                            <label class="form-check-label" for="WaterSectorCheck">Water management</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="MineralSectorCheck" value="option2" checked>
+                            <label class="form-check-label" for="MineralSectorCheck">Mineral industry</label>
+                          </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <p class="lead">DAC</p>
+
+                        <select id="inputCountry" class="form-control">
+                            <option selected>P2X</option>
+                            <option>BEniVer</option>
+                        </select>                        
+                    </div>
+                    <div class="form-group col-md-3">
+                        <p class="lead">biogenic</p>
+
+                    </div>
+
+                </div><!--  form-row -->
+              </form>
+            </div> <!--SettingsSpalte-->
+        <!--------------------------
+        Calculations
+        
+        
+        -------------------------->
+            <div class="col-7 border bg-light">
+              <h3 class="display-7">Calculations</h3>
+              <table class="table table-compressed table-striped">
+                <thead>
+                    <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+                </thead>
+                <tbody>
+                    <tr><td></td><td><p class="lead">Wasser</p></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>Wasser</td><td><input class="form-control" type="text" placeholder="83" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td><input class="form-control" type="text" placeholder="0,078%" readonly></td><td>von Gesamt-vorrat</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>Elektrolyse-Wasser</td><td><input class="form-control" type="text" placeholder="92,9" readonly></td><td>Mio. t</td><td></td><td></td></tr>
+                    <tr><td colspan="3"><p class="lead">Erneuerbarer Strom</p></td><!--<td></td>--><td>Eigenbedarf</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Wind (on)</td><td><input class="form-control" type="text" placeholder="243" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Wind (off)</td><td><input class="form-control" type="text" placeholder="22" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>PV</td><td><input class="form-control" type="text" placeholder="72" readonly></td><td>TWhel</td><td>Sonstiges</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Wasserkraft</td><td><input class="form-control" type="text" placeholder="14" readonly></td><td>TWhel</td><td>Elektrolyse</td><td><input class="form-control" type="text" placeholder="389" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Geothermie</td><td><input class="form-control" type="text" placeholder="18" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td><td>Wasserstoff</td><td><input class="form-control" type="text" placeholder="8,4" readonly></td><td>Mio. t</td></tr>
+                    <tr><td>Biomasse</td><td><input class="form-control" type="text" placeholder="21" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>Deponiegas</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td>nicht erneuerbar</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWhel</td><td></td><td></td></tr>
+                    <tr><td>TOTAL</td><td><input class="form-control" type="text" placeholder="389" readonly></td><td>TWhel</td><td>-->CO2</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWhel</td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWhel</td><td></td><td></td></tr>
+                    <tr><td></td><td><p class="lead">CO<sub>2</sub></p></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>Industrie</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>DAC</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>Biogen</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td>TOTAL</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                </tbody>
+            </table>
+            
+            
+            </div>
+        <!--------------------------
+        Results
+        
+        
+        --------------------------->
+            <div class="col-2 border bg-light">
+            <h3 class="display-7">Results</h3>
+            </div>
+
+          </div> <!--row-->
+    </div><!-- container-fluid-->
+      
+  </body>
+</html>
