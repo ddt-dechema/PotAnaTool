@@ -16,16 +16,20 @@
     }
     </style> -->
     <!-- Bootstrap JS -->
-    <script src="js/jquery-3.5.1.slim.min.js"></script>
+    <!-- <script src="js/jquery-3.5.1.slim.min.js"></script> -->
+    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-
-    <script>
+    
+    <!-- Other libraries -->
+    <link rel="stylesheet" href="css/jquery-ui.min.css">
+    <script src="js/jquery-ui.min.js"></script>
+    <!-- <script>
         function updateTextInput(val) {
-          document.getElementById('textInput').value=val; 
+          document.getElementById('EnergyOutput_input').value=val; 
         }
-    </script>
+    </script> -->
     <title>PtX-Potential Analysis</title>
   </head>
 
@@ -117,7 +121,7 @@
                         <br>
                         <!-- <label class="sr-only" for="inlineFormInputGroup">Username</label> -->
                         <div class="input-group"><!-- mb-12">-->
-                          <input type="text" class="form-control" id="textInput" placeholder="50">
+                          <input type="text" class="form-control" id="EnergyOutput_input" placeholder="50">
                           <div class="input-group-append">
                             <div class="input-group-text">%</div>
                           </div>
@@ -126,37 +130,37 @@
                       
                     <div class="form-group col-md-6">
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="WindOnCheck" value="option1" checked>
+                            <input class="form-check-input EnergyInput" type="checkbox" id="WindOnCheck" value="WindOff_DEU_TWh" checked>
                             <label class="form-check-label" for="WindOnCheck">Wind-Onshore</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="WindOffCheck" value="option2" checked>
+                            <input class="form-check-input EnergyInput" type="checkbox" id="WindOffCheck" value="1" checked>
                             <label class="form-check-label" for="WindOffCheck">Wind-Offshore</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="PVCheck" value="option3" checked>
+                            <input class="form-check-input EnergyInput" type="checkbox" id="PVCheck" value="1" checked>
                             <label class="form-check-label" for="PVCheck">Photovoltaik</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="HydroCheck" value="option3" checked>
+                            <input class="form-check-input EnergyInput" type="checkbox" id="HydroCheck" value="1" checked>
                             <label class="form-check-label" for="HydroCheck">Hydropower</label>
                           </div>
                     </div>
                     <div class="form-group col-md-6">
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="BiomassCheck" value="option1" checked>
+                            <input class="form-check-input EnergyInput" type="checkbox" id="BiomassCheck" value="1" checked>
                             <label class="form-check-label" for="BiomassCheck">Biomass</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="GeothermalCheck" value="option2" checked>
+                            <input class="form-check-input EnergyInput" type="checkbox" id="GeothermalCheck" value="Geothermal_DEU_TWh" checked>
                             <label class="form-check-label" for="GeothermalCheck">Geothermal energy</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="GasEnergyCheck" value="option2" checked>
+                            <input class="form-check-input EnergyInput" type="checkbox" id="GasEnergyCheck" value="1" checked>
                             <label class="form-check-label" for="GasEnergyCheck">Landfill gas</label>
                           </div>
                           <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" id="nonEECheck" value="option3">
+                            <input class="form-check-input EnergyInput" type="checkbox" id="nonEECheck" value="1">
                             <label class="form-check-label" for="nonEECheck">non-renewables</label>
                           </div>
                     </div>
@@ -235,20 +239,20 @@
                 <tbody>
                     <tr><td></td><td><p class="lead">Wasser</p></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td></td><td>Wasser</td><td><input class="form-control" type="text" id="H2O_total_input" placeholder="93" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td><input class="form-control" type="text" id="H2O_total_percentage" placeholder="0,078%" readonly></td><td>von Gesamt-vorrat</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td><input class="form-control" type="text" id="H2O_total_percentage" placeholder="0,078%" readonly></td><td>von Gesamt-vorrat</td><td></td><td></td><td><i class="bi bi-arrow-down-right-circle"></i></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>Elektrolyse-Wasser</td><td><input class="form-control" type="text" id="H2O_input" placeholder="92,9" readonly></td><td>Mio. t</td><td></td><td></td></tr>
-                    <tr><td colspan="3"><p class="lead">(Erneuerbarer) Strom</p></td><!--<td></td>--><td><i class="bi bi-arrow-right"></i> Eigenbedarf</td><td><input class="form-control" id="GrossConsumption_input" type="text" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td colspan="3"><p class="lead">(Erneuerbarer) Strom</p></td><!--<td></td>--><td><i class="bi bi-arrow-right"></i> Eigenbedarf</td><td><input class="form-control" id="GrossConsumption_input" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td><i class="bi bi-wind"></i> Wind (on)</td><td><input class="form-control" type="text" id="WindOn_input" placeholder="243" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td>Wind (off)</td><td><input class="form-control" type="text" placeholder="22" id="WindOff_input" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td><i class="bi bi-sun"></i> PV</td><td><input class="form-control" type="text" id="PV_input" placeholder="72" readonly></td><td>TWh<sub>el</sub></td><td><i class="bi bi-arrow-right"></i> Sonstiges</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td><i class="bi bi-water"></i> Wasserkraft</td><td><input class="form-control" id="Hydro_input" type="text" placeholder="14" readonly></td><td>TWh<sub>el</sub></td><td><i class="bi bi-arrow-right"></i> Elektrolyse</td><td><input class="form-control" type="text" placeholder="389" id="Electrolysis_input" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td><i class="bi bi-brightness-alt-high-fill"></i> Geothermie</td><td><input class="form-control" id="Geothermal_input" type="text" placeholder="18" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td>Wasserstoff</td><td><input class="form-control" type="text" placeholder="8,4" readonly></td><td>Mio. t</td></tr>
+                    <tr><td><i class="bi bi-sun"></i> PV</td><td><input class="form-control" type="text" id="PV_input" placeholder="72" readonly></td><td>TWh<sub>el</sub></td><td><i class="bi bi-arrow-right"></i> Sonstiges</td><td><input class="form-control" id="PtXOthers_input" type="text" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td><i class="bi bi-water"></i> Wasserkraft</td><td><input class="form-control" id="Hydro_input" type="text" placeholder="14" readonly></td><td>TWh<sub>el</sub></td><td><i class="bi bi-arrow-right"></i> Elektrolyse</td><td><input class="form-control" type="text" placeholder="389" id="Electrolysis_input" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td><i class="bi bi-arrow-down-right-circle"></i></td><td></td><td></td></tr>
+                    <tr><td><i class="bi bi-brightness-alt-high-fill"></i> Geothermie</td><td><input class="form-control" id="Geothermal_input" type="text" placeholder="18" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td>Wasserstoff</td><td><input class="form-control" id="H2_calc_input" type="text" placeholder="8,4" readonly></td><td>Mio. t</td></tr>
                     <tr><td>Biomasse</td><td><input class="form-control" type="text" id="Biomass_input" placeholder="21" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td>Deponiegas</td><td><input class="form-control" type="text" id="Gas_input" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td><i class="bi bi-droplet-half"></i> nicht erneuerbar</td><td><input class="form-control" type="text" id="nonEE_input" placeholder="88" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td>for MeOH:</td><td><input class="form-control" type="text" placeholder="" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td></tr>
+                    <tr><td>Deponiegas</td><td><input class="form-control" type="text" id="GasEnergy_input" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td><i class="bi bi-droplet-half"></i> nicht erneuerbar</td><td><input class="form-control" type="text" id="nonEE_input" placeholder="88" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td>for MeOH:</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td></tr>
                     <tr><td>TOTAL</td><td><input class="form-control" type="text" id="TotalEnergy_input" placeholder="389" readonly></td><td>TWh<sub>el</sub></td><td><i class="bi bi-arrow-right"></i> CO<sub>2</sub></td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td></td><td></td><td></td><td></td><td></td><td></td><td>for OME<sub>3-5</sub>:</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>TWh<sub>el</sub></td><td></td><td></td></tr>
-                    <tr><td></td><td><p class="lead">CO<sub>2</sub></p></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td><p class="lead">CO<sub>2</sub></p></td><td></td><td></td><td><i class="bi bi-arrow-down-left-circle"></i></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td></td><td>Industrie</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td></td><td>DAC</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td></td><td>Biogen</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
@@ -277,17 +281,17 @@
                     <tr><td>NACHFRAGE von:</td><td><input class="form-control" type="text" placeholder="OME3-5" readonly></td><td></td></tr>
                     <tr><td><input class="form-control" type="text" placeholder="DEU" readonly></td><td><input class="form-control" type="text" placeholder=2030 readonly></td><td></td></tr>
                     <tr><td>CO<sub>2</sub> via </td><td><input class="form-control" type="text" placeholder="DAC" readonly></td><td></td></tr>
-                    <tr id="tr-results-hydrogen" class="table-success"><td >Wasserstoff</td><td><input class="form-control" type="text" id="H2_result" placeholder="0" readonly></td><td>Mio. t</td></tr>
-                    <tr><td>Diesel</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
-                    <tr><td>Benzin</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
-                    <tr><td>Kerosin</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
-                    <tr><td>Naphtha</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
-                    <tr><td>Methanol</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
-                    <tr><td>OME 3-5</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
-                    <tr><td>DMC</td><td>noch nicht berechnet</td><td>Mio. t</td></tr>
-                    <tr><td>MeFo</td><td>noch nicht berechnet</td><td>Mio. t</td></tr>
-                    <tr><td>Chemie (Kosmetik)</td><td>noch nicht berechnet</td><td>Mio. t</td></tr>
-                    <tr><td>Chemie (Polymere)</td><td>noch nicht berechnet</td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-hydrogen" class="table-success"><td >Wasserstoff</td><td><input class="form-control" type="text" id="H2_result" placeholder="0" readonly></td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-diesel"><td>Diesel</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-gasoline"><td>Benzin</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-kerosene"><td>Kerosin</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-naphtha"><td>Naphtha</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-meoh"><td>Methanol</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-ome"><td>OME 3-5</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-dmc"><td>DMC</td><td>noch nicht berechnet</td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-mefo"><td>MeFo</td><td>noch nicht berechnet</td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-cosmetics"><td>Chemie (Kosmetik)</td><td>noch nicht berechnet</td><td>Mio. t</td></tr>
+                    <tr class="tr-results" id="tr-results-polymers"><td>Chemie (Polymere)</td><td>noch nicht berechnet</td><td>Mio. t</td></tr>
                     <tr><td></td><td></td><td></td></tr>
                     <tr><td>Notwendige Fläche</td><td><input class="form-control" type="text" placeholder="0" readonly></td><td>km²</td></tr>
                     </tr>
