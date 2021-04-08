@@ -25,6 +25,14 @@
     <!-- Other libraries -->
     <link rel="stylesheet" href="css/jquery-ui.min.css">
     <script src="js/jquery-ui.min.js"></script>
+
+    <!-- Charts.js -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-dnUg2JxjlVoXHVdSMWDYm2Y5xcIrJg1N+juOuRi0yLVkku/g26rwHwysJDAMwahaDfRpr1AxFz43ktuMPr/l1A==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.esm.js" integrity="sha512-4PEc6QLA4NvPsok3JsQ2Ia+m2oSjz1nvbHIGkD1ArGYvt5g2FNhMD0jYMYj9CIGDZDobXUWLkIN6xwfZa6I5Bg==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/helpers.esm.min.js" integrity="sha512-JC8H/YEABKWyV0Q/pgk3GfyrUCEiESg3ZM8DMdI8XD4zlwgtFyezG2dSenJ9pxAtJU2Bds6YNKYThXaLQrf9bw==" crossorigin="anonymous"></script> -->
+    <script src="js/Chart.min.js"></script>
+    
+    
     <!-- <script>
         function updateTextInput(val) {
           document.getElementById('EnergyOutput_input').value=val; 
@@ -304,14 +312,15 @@
         //
         //
         --------------------------->
+        <canvas id="EnergyChart" width="300" height="300"></canvas>
+        <canvas id="ResultsChart" width="300" height="300"></canvas>
 
-
-
-
-            </div>
+        
+           </div>
           </div> <!--row-->
     </div><!-- container-fluid-->
     <script src="main.js"></script>
-
+    <script src="canvas.js"></script>
+    
   </body>
 </html>

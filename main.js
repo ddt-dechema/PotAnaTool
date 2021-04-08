@@ -75,6 +75,18 @@ var Energy_array=[
   "nonEE",
   "GrossConsumption"
 ];
+
+let Energy_array_label=[
+  "WindOn",
+  "WindOff",
+  "PV",
+  "Hydro",
+  "Biomass",
+  "Geothermal",
+  "GasEnergy",
+  "nonEE"
+];
+
 const Energy_array_input=[
   "WindOn_input",
   "WindOff_input",
@@ -275,7 +287,7 @@ WindOnCheck.addEventListener('change', (event) => {
     document.getElementById("WindOn_input").value = "0";
     document.getElementById("WindOn_input").classList.add("alert-danger");
   }
-  calc_TotalTWh_curr();
+  calc_energy_allyears();
 });
 WindOffCheck.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
@@ -285,7 +297,7 @@ WindOffCheck.addEventListener('change', (event) => {
       document.getElementById("WindOff_input").value = "0";
       document.getElementById("WindOff_input").classList.add("alert-danger");
     }
-    calc_TotalTWh_curr();
+    calc_energy_allyears();
 });
 PVCheck.addEventListener('change', (event) => {
   if (event.currentTarget.checked) {
@@ -295,7 +307,7 @@ PVCheck.addEventListener('change', (event) => {
     document.getElementById("PV_input").value = "0";
     document.getElementById("PV_input").classList.add("alert-danger");
   }
-  calc_TotalTWh_curr();
+  calc_energy_allyears();
 });
 HydroCheck.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
@@ -305,7 +317,7 @@ HydroCheck.addEventListener('change', (event) => {
       document.getElementById("Hydro_input").value = "0";
       document.getElementById("Hydro_input").classList.add("alert-danger");
     }
-    calc_TotalTWh_curr();
+    calc_energy_allyears();
 });
 BiomassCheck.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
@@ -315,7 +327,7 @@ BiomassCheck.addEventListener('change', (event) => {
       document.getElementById("Biomass_input").value = "0";
       document.getElementById("Biomass_input").classList.add("alert-danger");
     }
-    calc_TotalTWh_curr();
+    calc_energy_allyears();
 });
 GeothermalCheck.addEventListener('change', (event) => {
   if (event.currentTarget.checked) {
@@ -325,7 +337,7 @@ GeothermalCheck.addEventListener('change', (event) => {
     document.getElementById("Geothermal_input").value = "0";
     document.getElementById("Geothermal_input").classList.add("alert-danger");
   }
-  calc_TotalTWh_curr();
+  calc_energy_allyears();
 });
 GasEnergyCheck.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
@@ -335,7 +347,7 @@ GasEnergyCheck.addEventListener('change', (event) => {
       document.getElementById("GasEnergy_input").value = "0";
       document.getElementById("GasEnergy_input").classList.add("alert-danger");
     }
-    calc_TotalTWh_curr();
+    calc_energy_allyears();
 });
 nonEECheck.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
@@ -345,7 +357,7 @@ nonEECheck.addEventListener('change', (event) => {
       document.getElementById("nonEE_input").value = "0";
       document.getElementById("nonEE_input").classList.add("alert-danger");
     }
-    calc_TotalTWh_curr();
+    calc_energy_allyears();
 });
 GrossConsumptionCheck.addEventListener('change', (event) => {
     if (event.currentTarget.checked) {
@@ -355,14 +367,14 @@ GrossConsumptionCheck.addEventListener('change', (event) => {
       document.getElementById("GrossConsumption_input").value = "0";
       document.getElementById("GrossConsumption_input").classList.add("alert-danger");
     }
-    calc_TotalTWh_curr();
+    calc_energy_allyears();
     $( "#GrossConsumption_input" ).effect( "highlight", {}, 1000);
     $( "#TotalEnergy_input" ).effect( "highlight", {}, 1000);
     $( "#Electrolysis_input" ).effect( "highlight", {}, 1000);
 });
 
 EnergyOutput_input.addEventListener('change', (event) => {
- calc_TotalTWh_curr();
+  calc_energy_allyears();
 
 
 });
@@ -413,7 +425,7 @@ function calc_energy_allyears(){
     }
   };
   
-  TotalTWh_peryear=[];
+  TotalTWh_peryear=[]; // Summe aus allen Technologien und alle Jahre
   var count=0;
   for(var j=0, k=years.length; j < k; j++) {
     count = 0;
@@ -429,10 +441,19 @@ function calc_energy_allyears(){
 
 };
 
+let TotalTWh_curr_arr = [];
 
 function calc_TotalTWh_curr() {
 
   // current (!) Total TWh
+  TotalTWh_curr_arr = [];
+  for(var i=0, n=TotalTWh_allyears.length; i < n; i++) 
+  { 
+    TotalTWh_curr_arr.push(TotalTWh_allyears[i][inputYear_val]); 
+  }
+  
+  updateChart(EnergyChart, TotalTWh_curr_arr);
+
   TotalTWh_curr=parseFloat($('#WindOn_input').val())+
   parseFloat($('#WindOff_input').val())+
   parseFloat($('#PV_input').val())+
@@ -505,6 +526,8 @@ function calc_Hydrogen() {
     $( "#H2O_total_percentage" ).effect( "highlight", {}, 1000);
     $( "#H2_result" ).effect( "highlight", {}, 1000);
   }
+  // console.log(TotalTWh_peryear)
+  updateChart(ResultsChart, hydrogen_total_allyears);
 };
 
 ////////////////////
@@ -515,11 +538,78 @@ function calc_Hydrogen() {
 
 // Doughnot- or Pie-Chart for Energy
 // vertical bar chart for output (demand/supply)
+function updateChart(chart, data) {
+  chart.data.datasets[0].data =data;
+    
+  chart.update();
+}
 
+var ctx = $('#ResultsChart');
+var ctx_energy = $('#EnergyChart');
 
+var ResultsChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+      labels: years,
+      datasets: [{
+          label: 'Total Hydrogen Output / Mio. t',  
+          data: [ 14, 1, 2, 1 ],
 
-
-$(document).ready(function() {
-  // $( "#H2_result" ).effect( "highlight", {}, 500);
-
+          backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+          ],
+          borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+          ],
+          borderWidth: 1
+      }]
+  },
+  options: {
+      scales: {
+          yAxes: [{
+              ticks: {
+                  beginAtZero: true
+              }
+          }]
+      }
+  }
 });
+
+var EnergyChart = new Chart(ctx_energy, {
+  type: 'doughnut',
+  data: {
+    labels: Energy_array_label,
+    datasets: [{
+      label: 'My First Dataset',
+      data: [300, 50, 100, 50, 50, 50 ,50, 294],
+      backgroundColor: [
+        'rgba(255, 99, 132, 1)',
+        'rgba(54, 162, 235, 1)',
+        'rgba(255, 206, 86, 1)',
+        'rgba(75, 192, 192, 1)',
+        'rgba(153, 102, 255, 1)',
+        'rgba(255, 159, 64, 1)',
+        'rgba(223, 224, 225, 1)',
+        'rgba(0, 0, 0, 1)'
+      ],
+      hoverOffset: 4
+    }]
+  }
+});
+
+
+
+document.addEventListener("DOMContentLoaded", event => {
+  calc_energy_allyears();
+});
+  
