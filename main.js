@@ -504,11 +504,12 @@ function calc_Hydrogen() {
   
   // H2_val=(Electrolysis_input_curr/Electrolysis_TWh[inputYear_val]).toFixed(3);
   H2O_val=(hydrogen_total_allyears[inputYear_val]*Electrolysis_H2O[inputYear_val]).toFixed(3);
-  H2O_percentage=(H2O_val/Water_DEU*100).toFixed(3)+"%";
+  H2O_percentage=(H2O_val/Water_DEU*100).toFixed(3);
   
 
   // document.getElementById("H2_result").value = hydrogen_total_allyears[inputYear_val];
   // document.getElementById("H2_calc_input").value = hydrogen_total_allyears[inputYear_val];
+  $('.results-input').val(0);
   $('#H2_result, #H2_calc_input').val(hydrogen_total_allyears[inputYear_val]);
 
   // document.getElementById("H2O_input").value = H2O_val;
@@ -552,7 +553,7 @@ var ResultsChart = new Chart(ctx, {
   data: {
       labels: years,
       datasets: [{
-          label: 'Total Hydrogen Output / Mio. t',  
+          label: 'Total Hydrogen Output',  
           data: [ 14, 1, 2, 1 ],
 
           backgroundColor: [
@@ -579,7 +580,11 @@ var ResultsChart = new Chart(ctx, {
           yAxes: [{
               ticks: {
                   beginAtZero: true
-              }
+              },
+              scaleLabel : {
+              display: true,
+              labelString: 'Mio. t'
+             } 
           }]
       }
   }
@@ -604,6 +609,17 @@ var EnergyChart = new Chart(ctx_energy, {
       ],
       hoverOffset: 4
     }]
+  },
+  options: {
+      responsive: true,
+      legend: {
+          position: 'right' //,
+          // labels: {
+          //     fontColor: "white",
+          //     boxWidth: 20,
+          //     padding: 20
+          // }
+      }
   }
 });
 
