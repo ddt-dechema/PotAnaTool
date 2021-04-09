@@ -134,7 +134,9 @@ const CO2_bio_gas_kt = [3.700,	2.100,	2.600,	3.800];
 
 
 
-let TotalTWh_curr=document.getElementById("TotalEnergy_input").value 
+// let TotalTWh_curr=document.getElementById("TotalEnergy_input").value 
+
+
 ////////////////////////////////
 //
 //  Elektrolyse - nur PEM!!!
@@ -258,6 +260,8 @@ inputCountry.addEventListener ("change", function () {
 inputPtXProduct.addEventListener ("change", function () {
     inputPtXProduct_val=inputPtXProduct.value;  
     calc_energy_allyears();
+    $('.div-result').removeClass('alert-success');
+    $('#'+$('#inputPtXProduct').val()+'_result').addClass('alert-success')
 // console.log(inputCountry_val + inputPtXProduct_val + inputYear_val + SuppDemand_val);
 });
 inputYear.addEventListener ("change", function () {
@@ -280,83 +284,27 @@ inputYear.addEventListener ("change", function () {
 ////////////////////
 //  update electricity output on change
 WindOnCheck.addEventListener('change', (event) => {
-  if (event.currentTarget.checked) {
-    document.getElementById("WindOn_input").value = WindOn_DEU_TWh[inputYear_val];
-    document.getElementById("WindOn_input").classList.remove("alert-danger");
-  } else {
-    document.getElementById("WindOn_input").value = "0";
-    document.getElementById("WindOn_input").classList.add("alert-danger");
-  }
   calc_energy_allyears();
 });
 WindOffCheck.addEventListener('change', (event) => {
-    if (event.currentTarget.checked) {
-      document.getElementById("WindOff_input").value = WindOff_DEU_TWh[inputYear_val];
-      document.getElementById("WindOff_input").classList.remove("alert-danger");
-    } else {
-      document.getElementById("WindOff_input").value = "0";
-      document.getElementById("WindOff_input").classList.add("alert-danger");
-    }
     calc_energy_allyears();
 });
 PVCheck.addEventListener('change', (event) => {
-  if (event.currentTarget.checked) {
-    document.getElementById("PV_input").value = PV_DEU_TWh[inputYear_val];
-    document.getElementById("PV_input").classList.remove("alert-danger");
-  } else {
-    document.getElementById("PV_input").value = "0";
-    document.getElementById("PV_input").classList.add("alert-danger");
-  }
   calc_energy_allyears();
 });
 HydroCheck.addEventListener('change', (event) => {
-    if (event.currentTarget.checked) {
-      document.getElementById("Hydro_input").value = Hydro_DEU_TWh[inputYear_val];
-      document.getElementById("Hydro_input").classList.remove("alert-danger");
-    } else {
-      document.getElementById("Hydro_input").value = "0";
-      document.getElementById("Hydro_input").classList.add("alert-danger");
-    }
     calc_energy_allyears();
 });
 BiomassCheck.addEventListener('change', (event) => {
-    if (event.currentTarget.checked) {
-      document.getElementById("Biomass_input").value = Biomass_DEU_TWh[inputYear_val];
-      document.getElementById("Biomass_input").classList.remove("alert-danger");
-    } else {
-      document.getElementById("Biomass_input").value = "0";
-      document.getElementById("Biomass_input").classList.add("alert-danger");
-    }
     calc_energy_allyears();
 });
 GeothermalCheck.addEventListener('change', (event) => {
-  if (event.currentTarget.checked) {
-    document.getElementById("Geothermal_input").value = Geothermal_DEU_TWh[inputYear_val];
-    document.getElementById("Geothermal_input").classList.remove("alert-danger");
-  } else {
-    document.getElementById("Geothermal_input").value = "0";
-    document.getElementById("Geothermal_input").classList.add("alert-danger");
-  }
   calc_energy_allyears();
 });
 GasEnergyCheck.addEventListener('change', (event) => {
-    if (event.currentTarget.checked) {
-      document.getElementById("GasEnergy_input").value = GasEnergy_DEU_TWh[inputYear_val];
-      document.getElementById("GasEnergy_input").classList.remove("alert-danger");
-    } else {
-      document.getElementById("GasEnergy_input").value = "0";
-      document.getElementById("GasEnergy_input").classList.add("alert-danger");
-    }
     calc_energy_allyears();
 });
 nonEECheck.addEventListener('change', (event) => {
-    if (event.currentTarget.checked) {
-      document.getElementById("nonEE_input").value = nonEE_DEU_TWh[inputYear_val];
-      document.getElementById("nonEE_input").classList.remove("alert-danger");
-    } else {
-      document.getElementById("nonEE_input").value = "0";
-      document.getElementById("nonEE_input").classList.add("alert-danger");
-    }
     calc_energy_allyears();
 });
 GrossConsumptionCheck.addEventListener('change', (event) => {
@@ -454,16 +402,24 @@ function calc_TotalTWh_curr() {
   
   updateChart(EnergyChart, TotalTWh_curr_arr);
 
-  TotalTWh_curr=parseFloat($('#WindOn_input').val())+
-  parseFloat($('#WindOff_input').val())+
-  parseFloat($('#PV_input').val())+
-  parseFloat($('#Hydro_input').val())+
-  parseFloat($('#Biomass_input').val())+
-  parseFloat($('#Geothermal_input').val())+
-  parseFloat($('#GasEnergy_input').val())+
-  parseFloat($('#nonEE_input').val())-
-  parseFloat($('#GrossConsumption_input').val());
+  // for index_old.html
+  // TotalTWh_curr=parseFloat($('#WindOn_input').val())+
+  // parseFloat($('#WindOff_input').val())+
+  // parseFloat($('#PV_input').val())+
+  // parseFloat($('#Hydro_input').val())+
+  // parseFloat($('#Biomass_input').val())+
+  // parseFloat($('#Geothermal_input').val())+
+  // parseFloat($('#GasEnergy_input').val())+
+  // parseFloat($('#nonEE_input').val())-
+  // parseFloat($('#GrossConsumption_input').val());
   
+  TotalTWh_curr=0;
+  $.each(TotalTWh_curr_arr, function(index, value) {
+    TotalTWh_curr += value;
+  });
+
+
+
   TotalTWh_curr=TotalTWh_curr.toFixed(3);
 
   if(TotalTWh_curr<0) {
@@ -509,7 +465,8 @@ function calc_Hydrogen() {
 
   // document.getElementById("H2_result").value = hydrogen_total_allyears[inputYear_val];
   // document.getElementById("H2_calc_input").value = hydrogen_total_allyears[inputYear_val];
-  $('.results-input').val(0);
+  $('.results-input, .oxygenates').val();
+  $('.oxygenates').val(0);
   $('#H2_result, #H2_calc_input').val(hydrogen_total_allyears[inputYear_val]);
 
   // document.getElementById("H2O_input").value = H2O_val;
@@ -611,7 +568,7 @@ var EnergyChart = new Chart(ctx_energy, {
     }]
   },
   options: {
-      responsive: true,
+      responsive: false,
       legend: {
           position: 'right' //,
           // labels: {

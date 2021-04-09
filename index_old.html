@@ -13,9 +13,7 @@
     #results_tab * {
       margin: 0;
     }
-    canvas{
-    margin: 0 auto;
-    }
+
     </style>
     <!-- Bootstrap JS -->
     <!-- <script src="js/jquery-3.5.1.slim.min.js"></script> -->
@@ -79,14 +77,11 @@
                         <label for="inputPtXProduct">Product</label>
                         <select id="inputPtXProduct" class="form-control">
                             <option value="Hydrogen" selected >Hydrogen</option>
-                            <option class="bg-danger" value="FT-Diesel" disabled >FT-Diesel</option>
-                            <option class="bg-danger" value="FT-Gasoline" disabled >FT-Gasoline</option>
+                            <option class="bg-danger" value="FT-Diesel" disabled >FT-Diesel/Gasoline</option>
                             <option class="bg-danger" value="FT-Kerosin" disabled>FT-Kerosene</option>
                             <option class="bg-warning" value="FT-Naphtha">FT-Naphtha</option>
                             <option class="bg-warning" value="MeOH">Methanol</option>
                             <option class="bg-danger" value="OME" disabled>OME<sub>3-5</sub></option>
-                            <option class="bg-warning" value="DMC">DMC</option>
-                            <option class="bg-danger" value="MeFo" disabled>MeFo</option>
                         </select>
                     </div>
                     <div class="form-group col-md-3">
@@ -252,46 +247,37 @@
         </div> -->
             <div class="col-7 border bg-light">
               <h3 class="display-7">Calculations</h3>
-              <table id="table-calculations" class="table table-sm table-striped" style="font-size: 0.8rem;">
+              <table id="table-calculations" class="table-sm table-striped" style="font-size: 0.8rem;">
                 <thead>
-                    <!-- <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr> -->
+                    <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
                 </thead>
                 <tbody>
-                  <tr><td></td><td></td><td></td></tr>
-
-                    <tr><td style="border-left: 1px solid;border-top:1px solid"><p class="lead"  style="margin-bottom: 0rem;">Wasser</p></td><td style="border-top:1px solid;"><div class="input-group input-group-sm"><input class="form-control" type="text" id="H2O_total_input" value="93" readonly></div></td><td style="border-right: 1px solid;border-top:1px solid">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td style="border-left:1px solid;border-top: 1px solid;"><p class="lead"  style="margin-bottom: 0rem;">Wasser</p></td><td style="border-top:1px solid;"><div class="input-group input-group-sm"><input class="form-control" type="text" id="H2O_total_input" value="93" readonly></div></td><td style="border-right: 1px solid;border-top:1px solid">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <!-- <tr><td></td><td style="border-left:1px solid;border-bottom:1px solid"></td><td style="border-bottom:1px solid;"><input class="form-control" type="text" id="H2O_total_percentage" value="0,078%" readonly></td><td style="border-right: 1px solid;border-bottom: 1px solid;">von Gesamt-vorrat</td><td></td><td><i class="bi bi-arrow-right-circle"></i></td><td>Elektrolyse-Wasser</td><td><input class="form-control" type="text" id="H2O_input" value="92,9" readonly></td><td>Mio. t</td></td><td></td><td></td><td></td><td></td></tr> -->
-                    <tr><td style="border-left:1px solid;border-bottom:1px solid"></td><td style="border-bottom:1px solid;">        <div class="input-group input-group-sm">
+                    <tr><td></td><td style="border-left:1px solid;border-bottom:1px solid"></td><td style="border-bottom:1px solid;">        <div class="input-group input-group-sm">
                       <input type="text" class="form-control" id="H2O_total_percentage" value="0,078%" readonly>
                       <div class="input-group-append">
                         <span class="input-group-text">%</span>
-                        </div></td>
-                        <td style="border-right: 1px solid;border-bottom: 1px solid;">von Gesamt-vorrat</td><td><i class="bi bi-arrow-right-circle"></i></td><td>Elektrolyse-Wasser</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" id="H2O_input" value="92,9" readonly></div></td><td>Mio. t</td></td><td></td><td></td><td></td><td></td></tr>
+                        </div>
+                    </td><td style="border-right: 1px solid;border-bottom: 1px solid;">von Gesamt-vorrat</td><td></td><td><i class="bi bi-arrow-right-circle"></i></td><td>Elektrolyse-Wasser</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" id="H2O_input" value="92,9" readonly></div></td><td>Mio. t</td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td style="border-top: 1px solid;border-right:1px solid;border-left:1px solid" colspan="3"><p  style="margin-bottom: 0rem;" class="lead">(Erneuerbarer) Strom</p></td><!--<td></td>--><td><i class="bi bi-arrow-right"></i> Eigenbedarf</td><td><div class="input-group input-group-sm"><input class="form-control" id="GrossConsumption_input" value="0" readonly></div></td><td>TWh<sub>el</sub></td><td></td><td><i class="bi bi-arrow-down-circle"></i></td><td></td><td></td><td></td></tr>
-                    
-                    <tr><td colspan="3" rowspan="7
-                      " style="border-right:1px solid;border-left: 1px solid;"><div><canvas id="EnergyChart" width="250px" height="250px"></canvas> </div></td></tr>
-                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>                    
-                    
-                    <tr><td><i class="bi bi-arrow-right"></i> Elektrolyse</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="389" id="Electrolysis_input" readonly></div></td><td>TWh<sub>el</sub></td><td colspan="2" rowspan="2" style="text-align:center"><i class="bi bi-arrow-right"></i><img style="width:100%; max-width:100px;margin-left: auto;margin-right: auto;" src="img/electrolysis.png" alt="">Electrolysis <i class="bi bi-arrow-right-circle"></i> </td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td><i class="bi bi-arrow-right-circle"></i></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td><i class="bi bi-arrow-down-circle"></i></td><td></td></tr>
-                    
-                    <tr><td><i class="bi bi-arrow-right"></i> Sonstiges</td><td><div class="input-group input-group-sm"><input class="form-control" id="PtXOthers_input" type="text" value="0" readonly></div></td><td>TWh<sub>el</sub></td><td>for MeOH:</td><td><div class="input-group input-group-sm"><input class="form-control oxygenates" type="text" value="999" readonly></div></td><td>TWh<sub>el</sub></td><td colspan="2" rowspan="2" style="text-align:center"><img class="center" src="img/chemical_conversion.png" style="width:100%; max-width:100px;" alt="">Chemical Conversion <i class="bi bi-arrow-right-circle"></i></td></tr>
-                    <tr><td></td><td></td><td></td><td>for OME<sub>3-5</sub>:</td><td><div class="input-group input-group-sm"><input class="form-control oxygenates" type="text" value="9999" readonly></div></td></td><td>TWh<sub>el</sub></td></tr>
-
-                    <tr><td style="border-left:1px solid;border-bottom:1px solid">TOTAL</td><td style="border-bottom:1px solid;"><div class="input-group input-group-sm"><input class="form-control" type="text" id="TotalEnergy_input" value="389" readonly></div></td><td style="border-right: 1px solid;border-bottom:1px solid;">TWh<sub>el</sub></td>
-                      <td><i class="bi bi-arrow-right"></i> CO<sub>2</sub></td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></td><td>TWh<sub>el</sub></td>
-                      <td></td>  <td></td><td></td>  <td></td><td></td>
-                      </tr>
-                    <tr><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-top: 1px solid;border-right:1px solid;border-left:1px solid;" colspan="3"><p class="lead" style="margin-bottom: 0rem;">CO<sub>2</sub></p></td><td><i class="bi bi-arrow-return-left"></i></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-left:1px solid;">Industrie</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-left:1px solid;">DAC</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-left:1px solid;">Biogen</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-left:1px solid;border-bottom:1px solid;">TOTAL</td><td style="border-bottom:1px solid;"><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;border-bottom:1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;"><i class="bi bi-wind"></i> Wind (on)</td><td ><div class="input-group input-group-sm"><input class="form-control" type="text" id="WindOn_input" value="243" readonly></div></td><td style="border-right: 1px solid;">TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td><i class="bi bi-arrow-down-circle"></i></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;">Wind (off)</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="22" id="WindOff_input" readonly></div></td><td style="border-right: 1px solid;">TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td><i class="bi bi-arrow-down-circle"></i></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;"><i class="bi bi-sun"></i> PV</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" id="PV_input" value="72" readonly></div></td><td style="border-right: 1px solid;">TWh<sub>el</sub></td><td><i class="bi bi-arrow-right"></i> Sonstiges</td><td><div class="input-group input-group-sm"><input class="form-control" id="PtXOthers_input" type="text" value="0" readonly></div></td><td>TWh<sub>el</sub></td><td></td><td><i class="bi bi-arrow-down-circle"></i></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;"><i class="bi bi-water"></i> Wasserkraft</td><td><div class="input-group input-group-sm"><input class="form-control" id="Hydro_input" type="text" value="14" readonly></div></td><td style="border-right: 1px solid;">TWh<sub>el</sub></td><td><i class="bi bi-arrow-right"></i> Elektrolyse</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="389" id="Electrolysis_input" readonly></div></td><td>TWh<sub>el</sub></td><td colspan="2" rowspan="2" style="text-align:center"><i class="bi bi-arrow-right"></i><img  style="width:100%; max-width:100px;" src="img/electrolysis.png" alt="">Electrolysis <i class="bi bi-arrow-right-circle"></i> </td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;"><i class="bi bi-brightness-alt-high-fill"></i> Geothermie</td><td><div class="input-group input-group-sm"><input class="form-control" id="Geothermal_input" type="text" value="18" readonly></div></td><td style="border-right: 1px solid;">TWh<sub>el</sub></td><td></td><td></td><td></td><td>Wasserstoff</td><td><div class="input-group input-group-sm"><input class="form-control" id="H2_calc_input" type="text" value="8,4" readonly></div></td><td>Mio. t</td></tr>
+                    <tr><td style="border-left:1px solid;">Biomasse</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" id="Biomass_input" value="21" readonly></div></td><td style="border-right: 1px solid;">TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td></td><td><i class="bi bi-arrow-down-circle"></i></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;">Deponiegas</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" id="GasEnergy_input" value="0" readonly></div></td><td style="border-right: 1px solid;">TWh<sub>el</sub></td><td></td><td></td><td></td><td></td><td></td><td></td><td><i class="bi bi-arrow-down-circle"></i></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;"><i class="bi bi-droplet-half"></i> nicht erneuerbar</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" id="nonEE_input" value="88" readonly></div></td><td style="border-right: 1px solid;">TWh<sub>el</sub></td><td></td><td></td><td></td><td>for MeOH:</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td>TWh<sub>el</sub></td><td colspan="2" rowspan="3" style="text-align:center"><img class="center" src="img/chemical_conversion.png" style="width:100%; max-width:100px;" alt="">Chemical Conversion <i class="bi bi-arrow-right-circle"></i></td></tr>
+                    <tr><td style="border-left:1px solid;border-bottom:1px solid">TOTAL</td><td style="border-bottom:1px solid;"><div class="input-group input-group-sm"><input class="form-control" type="text" id="TotalEnergy_input" value="389" readonly></div></td><td style="border-right: 1px solid;border-bottom:1px solid;">TWh<sub>el</sub></td><td><i class="bi bi-arrow-right"></i> CO<sub>2</sub></td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></td><td>TWh<sub>el</sub></td><td>for OME<sub>3-5</sub>:</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td></td><td>TWh<sub>el</sub></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td style="border-top: 1px solid;border-right:1px solid;border-left:1px solid;" colspan="3"><p class="lead" style="margin-bottom: 0rem;">CO<sub>2</sub></p></td><td><i class="bi bi-arrow-return-left"></i></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td style="border-left:1px solid;">Industrie</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td style="border-left:1px solid;">DAC</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td style="border-left:1px solid;">Biogen</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td style="border-left:1px solid;border-bottom:1px solid;">TOTAL</td><td style="border-bottom:1px solid;"><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;border-bottom:1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                 </tbody>
             </table>
             
@@ -318,7 +304,7 @@
             </table> -->
             <div class="row" style="font-size: 0.8rem;" id="results_tab">
 
-                <div class="form-group col-sm-5 div-result alert-success" id="Hydrogen_result">
+                <div class="form-group col-sm-5">
                   <label class="col-sm-5 col-form-label">Hydrogen</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -330,7 +316,7 @@
                   </div>
                 </div>
 
-                <div class="form-group col-sm-5 div-result" id="FT-Diesel-result">
+                <div class="form-group col-sm-5">
                   <label class="col-sm-5 col-form-label">Diesel</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -342,7 +328,7 @@
                   </div>
                 </div>
 
-                <div class="form-group col-sm-5 div-result" id="FT-Gasoline-result">
+                <div class="form-group col-sm-5">
                   <label class="col-sm-5 col-form-label">Gasoline</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -354,7 +340,7 @@
                   </div>
                 </div>
             
-                <div class="form-group col-sm-5 div-result" id="FT-Kerosin-result">
+                <div class="form-group col-sm-5">
               <label class="col-sm-5 col-form-label">Kerosene</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -366,7 +352,7 @@
                   </div>
                 </div>
 
-                <div class="form-group col-sm-5 div-result" id="FT-Naphtha-result">
+                <div class="form-group col-sm-5">
                   <label class="col-sm-5 col-form-label">Naphtha</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -378,7 +364,7 @@
                   </div>
                 </div>
           
-              <div class="form-group col-sm-5 div-result" id="MeOH-result">
+              <div class="form-group col-sm-5">
                 <label class="col-sm-5 col-form-label">Methanol</label>
               </div>
               <div class="form-group col-sm-7">
@@ -390,7 +376,7 @@
                 </div>
               </div>
 
-            <div class="form-group col-sm-5 div-result" id="OME-result" >
+            <div class="form-group col-sm-5">
               <label class="col-sm-5 col-form-label">OME<sub>3-5</sub></label>
             </div>
             <div class="form-group col-sm-7">
@@ -402,7 +388,7 @@
               </div>
             </div>
 
-          <div class="form-group col-sm-5 div-result" id="DMC-result" >
+          <div class="form-group col-sm-5">
             <label class="col-sm-5 col-form-label">DMC</label>
           </div>
           <div class="form-group col-sm-7">
@@ -414,7 +400,7 @@
             </div>
           </div>
 
-        <div class="form-group col-sm-5 div-result" id="MeFo-result" >
+        <div class="form-group col-sm-5">
           <label class="col-sm-5 col-form-label">MeFo</label>
         </div>
         <div class="form-group col-sm-7">
@@ -459,7 +445,7 @@
         //
         //
         --------------------------->
-        <!-- <canvas id="EnergyChart" width="300" height="250"></canvas> -->
+        <canvas id="EnergyChart" width="300" height="250"></canvas>
         <canvas id="ResultsChart" width="300" height="250"></canvas>
 
         
