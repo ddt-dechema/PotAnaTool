@@ -14,7 +14,7 @@
       margin: 0;
     }
     canvas{
-    margin: 0 auto;
+      margin: 0 auto;
     }
     </style>
     <!-- Bootstrap JS -->
@@ -79,12 +79,12 @@
                         <label for="inputPtXProduct">Product</label>
                         <select id="inputPtXProduct" class="form-control">
                             <option value="Hydrogen" selected >Hydrogen</option>
-                            <option class="bg-danger" value="FT-Diesel" disabled >FT-Diesel</option>
-                            <option class="bg-danger" value="FT-Gasoline" disabled >FT-Gasoline</option>
-                            <option class="bg-danger" value="FT-Kerosin" disabled>FT-Kerosene</option>
+                            <option class="bg-warning" value="FT-Diesel">FT-Diesel</option>
+                            <option class="bg-warning" value="FT-Gasoline" >FT-Gasoline</option>
+                            <option class="bg-warning" value="FT-Kerosin">FT-Kerosene</option>
                             <option class="bg-warning" value="FT-Naphtha">FT-Naphtha</option>
                             <option class="bg-warning" value="MeOH">Methanol</option>
-                            <option class="bg-danger" value="OME" disabled>OME<sub>3-5</sub></option>
+                            <option class="bg-warning" value="OME">OME<sub>3-5</sub></option>
                             <option class="bg-warning" value="DMC">DMC</option>
                             <option class="bg-danger" value="MeFo" disabled>MeFo</option>
                         </select>
@@ -193,7 +193,7 @@
                       </div>
                     <div class="form-row">
 
-                    <div id="tab_pointsources" class="form-group col-md-5 alert-secondary">
+                    <div id="tab_point_sources" class="form-group col-md-5 alert-secondary">
                         <p class="lead">point sources</p>
                         
                         <div class="form-check form-check-inline">
@@ -274,23 +274,31 @@
                       " style="border-right:1px solid;border-left: 1px solid;"><div><canvas id="EnergyChart" width="250px" height="250px"></canvas> </div></td></tr>
                     <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>                    
                     
-                    <tr><td><i class="bi bi-arrow-right"></i> Elektrolyse</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="389" id="Electrolysis_input" readonly></div></td><td>TWh<sub>el</sub></td><td colspan="2" rowspan="2" style="text-align:center"><i class="bi bi-arrow-right"></i><img style="width:100%; max-width:100px;margin-left: auto;margin-right: auto;" src="img/electrolysis.png" alt="">Electrolysis <i class="bi bi-arrow-right-circle"></i> </td><td></td><td></td><td></td></tr>
-                    <tr><td></td><td></td><td></td><td><i class="bi bi-arrow-right-circle"></i></td><td></td><td></td></tr>
+                    <tr><td><i class="bi bi-arrow-right"></i> Elektrolyse</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="389" id="Electrolysis_input" readonly></div></td><td>TWh<sub>el</sub></td>
+                      <td colspan="2" rowspan="2" style="text-align:center"><i class="bi bi-arrow-right"></i><img style="width:100%; max-width:100px;margin-left: auto;margin-right: auto;" src="img/electrolysis.png" alt="">Electrolysis <i class="bi bi-arrow-right-circle"></i> </td><td></td>
+                      <td style="vertical-align:bottom">Hydrogen [Mio. t]:
+                      </td><td></td></tr>
+                    <tr><td></td><td></td><td></td><td><i class="bi bi-arrow-right-circle"></i></td><td>
+                      <div class="input-group input-group-sm"><input class="form-control" type="text" value="389" id="H2_calc_input" readonly></div>
+                    </td><td></td></tr>
                     <tr><td></td><td></td><td></td><td></td><td></td><td></td><td><i class="bi bi-arrow-down-circle"></i></td><td></td></tr>
                     
                     <tr><td><i class="bi bi-arrow-right"></i> Sonstiges</td><td><div class="input-group input-group-sm"><input class="form-control" id="PtXOthers_input" type="text" value="0" readonly></div></td><td>TWh<sub>el</sub></td><td>for MeOH:</td><td><div class="input-group input-group-sm"><input class="form-control oxygenates" type="text" value="999" readonly></div></td><td>TWh<sub>el</sub></td><td colspan="2" rowspan="2" style="text-align:center"><img class="center" src="img/chemical_conversion.png" style="width:100%; max-width:100px;" alt="">Chemical Conversion <i class="bi bi-arrow-right-circle"></i></td></tr>
                     <tr><td></td><td></td><td></td><td>for OME<sub>3-5</sub>:</td><td><div class="input-group input-group-sm"><input class="form-control oxygenates" type="text" value="9999" readonly></div></td></td><td>TWh<sub>el</sub></td></tr>
 
                     <tr><td style="border-left:1px solid;border-bottom:1px solid">TOTAL</td><td style="border-bottom:1px solid;"><div class="input-group input-group-sm"><input class="form-control" type="text" id="TotalEnergy_input" value="389" readonly></div></td><td style="border-right: 1px solid;border-bottom:1px solid;">TWh<sub>el</sub></td>
-                      <td><i class="bi bi-arrow-right"></i> CO<sub>2</sub></td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></td><td>TWh<sub>el</sub></td>
+                      <td><i class="bi bi-arrow-right"></i> CO<sub>2</sub></td>
+                      <td><div class="input-group input-group-sm"><input class="form-control" id="CO2_TWh_input" type="text" value="0" readonly></td><td>TWh<sub>el</sub></td>
                       <td></td>  <td></td><td></td>  <td></td><td></td>
                       </tr>
                     <tr><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td style="border-top: 1px solid;border-right:1px solid;border-left:1px solid;" colspan="3"><p class="lead" style="margin-bottom: 0rem;">CO<sub>2</sub></p></td><td><i class="bi bi-arrow-return-left"></i></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-left:1px solid;">Industrie</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-left:1px solid;">DAC</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-left:1px solid;">Biogen</td><td><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    <tr><td style="border-left:1px solid;border-bottom:1px solid;">TOTAL</td><td style="border-bottom:1px solid;"><div class="input-group input-group-sm"><input class="form-control" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;border-bottom:1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;">Industrie</td><td><div class="input-group input-group-sm"><input class="form-control CO2_inputs" id="point_sources_input" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;">DAC</td><td><div class="input-group input-group-sm"><input class="form-control CO2_inputs" id="DAC_input" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;">Biogen</td><td><div class="input-group input-group-sm"><input class="form-control CO2_inputs" id="biogenic_input" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;">Mio. t</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                    <tr><td style="border-left:1px solid;border-bottom:1px solid;">TOTAL</td>
+                      <td style="border-bottom:1px solid;"><div class="input-group input-group-sm"><input class="form-control CO2_inputs" id="CO2_input" type="text" value="0" readonly></div></td><td style="border-right: 1px solid;border-bottom:1px solid;">Mio. t</td>
+                      <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                     <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                 </tbody>
             </table>
@@ -318,7 +326,7 @@
             </table> -->
             <div class="row" style="font-size: 0.8rem;" id="results_tab">
 
-                <div class="form-group col-sm-5 div-result alert-success" id="Hydrogen_result">
+                <div class="form-group col-sm-5 div-result alert-success" id="div-Hydrogen_result">
                   <label class="col-sm-5 col-form-label">Hydrogen</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -330,7 +338,7 @@
                   </div>
                 </div>
 
-                <div class="form-group col-sm-5 div-result" id="FT-Diesel-result">
+                <div class="form-group col-sm-5 div-result" id="div-FT-Diesel_result">
                   <label class="col-sm-5 col-form-label">Diesel</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -342,7 +350,7 @@
                   </div>
                 </div>
 
-                <div class="form-group col-sm-5 div-result" id="FT-Gasoline-result">
+                <div class="form-group col-sm-5 div-result" id="div-FT-Gasoline_result">
                   <label class="col-sm-5 col-form-label">Gasoline</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -354,7 +362,7 @@
                   </div>
                 </div>
             
-                <div class="form-group col-sm-5 div-result" id="FT-Kerosin-result">
+                <div class="form-group col-sm-5 div-result" id="div-FT-Kerosin_result">
               <label class="col-sm-5 col-form-label">Kerosene</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -366,7 +374,7 @@
                   </div>
                 </div>
 
-                <div class="form-group col-sm-5 div-result" id="FT-Naphtha-result">
+                <div class="form-group col-sm-5 div-result" id="div-FT-Naphtha_result">
                   <label class="col-sm-5 col-form-label">Naphtha</label>
                 </div>
                 <div class="form-group col-sm-7">
@@ -378,7 +386,7 @@
                   </div>
                 </div>
           
-              <div class="form-group col-sm-5 div-result" id="MeOH-result">
+              <div class="form-group col-sm-5 div-result" id="div-MeOH_result">
                 <label class="col-sm-5 col-form-label">Methanol</label>
               </div>
               <div class="form-group col-sm-7">
@@ -390,7 +398,7 @@
                 </div>
               </div>
 
-            <div class="form-group col-sm-5 div-result" id="OME-result" >
+            <div class="form-group col-sm-5 div-result" id="div-OME_result" >
               <label class="col-sm-5 col-form-label">OME<sub>3-5</sub></label>
             </div>
             <div class="form-group col-sm-7">
@@ -402,7 +410,7 @@
               </div>
             </div>
 
-          <div class="form-group col-sm-5 div-result" id="DMC-result" >
+          <div class="form-group col-sm-5 div-result" id="div-DMC_result" >
             <label class="col-sm-5 col-form-label">DMC</label>
           </div>
           <div class="form-group col-sm-7">
@@ -414,7 +422,7 @@
             </div>
           </div>
 
-        <div class="form-group col-sm-5 div-result" id="MeFo-result" >
+        <div class="form-group col-sm-5 div-result" id="div-MeFo_result" >
           <label class="col-sm-5 col-form-label">MeFo</label>
         </div>
         <div class="form-group col-sm-7">
